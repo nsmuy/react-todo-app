@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export const UntouchedTask = (props) => {
 
@@ -10,12 +11,12 @@ export const UntouchedTask = (props) => {
             <ul className="task-list">
                 {untouchedTask.map((task, index) => {
                     return(
-                        <li key={task} className="task-list__item">
+                        <li key={uuidv4()} className="task-list__item">
                             <p>{task}</p>
                             <button onClick={() => onClickProcessing(index)}>着手</button>
                             <button onClick={() => onClickDelete(index, 'untouched')}>削除</button>
                         </li>
-                    );
+                    );  
                 })}
             </ul>
         </div>

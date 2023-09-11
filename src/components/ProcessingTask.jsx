@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export const ProcessingTask = (props) => {
     const {processingTask, onClickDone, onClickDelete} = props;
@@ -9,7 +10,7 @@ export const ProcessingTask = (props) => {
             <ul className="task-list">
                 {processingTask.map((task, index) => {
                     return(
-                        <li key={task} className="task-list__item">
+                        <li key={uuidv4()} className="task-list__item">
                             <p>{task}</p>
                             <button onClick={() => onClickDone(index)}>完了</button>
                             <button onClick={() => onClickDelete(index, 'processing')}>削除</button>
