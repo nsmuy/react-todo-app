@@ -137,7 +137,7 @@ export const App = () => {
                     <ul className="task-list">
                         {doneTask.map((task, index) => {
                             return(
-                                <li className="task-list__item">
+                                <li key={task} className="task-list__item">
                                     <p>{task}</p>
                                     <button onClick={() => onClickBack(index)}>戻す</button>
                                     <button onClick={() => onClickDelete(index, 'done')}>削除</button>
