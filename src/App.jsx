@@ -72,18 +72,29 @@ export const App = () => {
 
     //タスクを削除する関数
     const onClickDelete = (index, status) => {
-        if (status === 'untouched') {
-            const newUntouchedTask = [...untouchedTask]
-            newUntouchedTask.splice(index, 1);
-            setUntouchedTask(newUntouchedTask);
-        } else if (status === 'processing') {
-            const newProcessingTask = [...processingTask]
-            newProcessingTask.splice(index, 1);
-            setProcessingTask(newProcessingTask);
-        } else if (status === 'done') {
-            const newDoneTask = [...doneTask]
-            newDoneTask.splice(index, 1);
-            setDoneTask(newDoneTask);
+        switch (status) {
+            case 'untouched': {
+                const newUntouchedTask = [...untouchedTask];
+                newUntouchedTask.splice(index, 1);
+                setUntouchedTask(newUntouchedTask);
+                break;
+            }
+
+            case 'processing': {
+                const newProcessingTask = [...processingTask];
+                newProcessingTask.splice(index, 1);
+                setProcessingTask(newProcessingTask);
+                break;
+            }
+
+            case 'done': {
+                const newDoneTask = [...doneTask];
+                newDoneTask.splice(index, 1);
+                setDoneTask(newDoneTask);
+                break;
+            }
+
+            default: break;
         }
     }
 
