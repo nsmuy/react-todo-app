@@ -66,6 +66,23 @@ export const App = () => {
         // setProcessingTask(newProcessingTask);
     }
 
+    //タスクを削除する関数
+    const onClickDelete = (index, status) => {
+        if (status === 'untouched') {
+            const newUntouchedTask = [...untouchedTask]
+            newUntouchedTask.splice(index, 1);
+            setUntouchedTask(newUntouchedTask);
+        } else if (status === 'processing') {
+            const newProcessingTask = [...processingTask]
+            newProcessingTask.splice(index, 1);
+            setProcessingTask(newProcessingTask);
+        } else if (status === 'done') {
+            const newDoneTask = [...doneTask]
+            newDoneTask.splice(index, 1);
+            setDoneTask(newDoneTask);
+        }
+    }
+
     return (
         <>
             <div id="input-area" className="input-area">
@@ -89,7 +106,7 @@ export const App = () => {
                                 <li key={task} className="task-list__item">
                                     <p>{task}</p>
                                     <button onClick={() => onClickProcessing(index)}>着手</button>
-                                    <button>削除</button>
+                                    <button onClick={() => onClickDelete(index, 'untouched')}>削除</button>
                                 </li>
                             );
                         })}
@@ -106,7 +123,7 @@ export const App = () => {
                                 <li key={task} className="task-list__item">
                                     <p>{task}</p>
                                     <button onClick={() => onClickDone(index)}>完了</button>
-                                    <button>削除</button>
+                                    <button onClick={() => onClickDelete(index, 'processing')}>削除</button>
                                 </li>
                             );
                         })}
@@ -123,7 +140,7 @@ export const App = () => {
                                 <li className="task-list__item">
                                     <p>{task}</p>
                                     <button onClick={() => onClickBack(index)}>戻す</button>
-                                    <button>削除</button>
+                                    <button onClick={() => onClickDelete(index, 'done')}>削除</button>
                                 </li>
                             );
                         })}
