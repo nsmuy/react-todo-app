@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuidv4 } from 'uuid';
+import {DeleteButton} from './DeleteButton'; 
 
 export const DoneTask = (props) => {
     const {doneTask, onClickBack, onClickDelete} = props;
@@ -13,7 +14,11 @@ export const DoneTask = (props) => {
                         <li key={uuidv4()} className="task-list__item">
                             <p>{task}</p>
                             <button onClick={() => onClickBack(index)}>戻す</button>
-                            <button onClick={() => onClickDelete(index, 'done')}>削除</button>
+                            <DeleteButton
+                                onClick={onClickDelete}
+                                index={index}
+                                status={'done'}
+                            />
                         </li>
                     );
                 })}
