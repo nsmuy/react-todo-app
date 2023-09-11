@@ -6,6 +6,7 @@ export const App = () => {
     const [task, setTask] = useState('');
     const [untouchedTask, setUntouchedTask] = useState([]);
     const [processingTask, setProcessingTask] = useState([]);
+    const [doneTask, setDoneTask] = useState([]);
 
     const onChangeTask = (event) => {setTask(event.target.value);}
 
@@ -21,6 +22,11 @@ export const App = () => {
         const newProcessingTask = [...processingTask, untouchedTask[index]];
         setProcessingTask(newProcessingTask);
         console.log(processingTask);
+    }
+
+    const onClickDone = (index) => {
+        const newDoneTask = [...doneTask, processingTask[index]];
+        setDoneTask(newDoneTask);
     }
 
     return (
@@ -58,11 +64,11 @@ export const App = () => {
                 <div className="status-area__processing">
                     <p className="title">進行中のタスク</p>
                     <ul className="task-list">
-                        {processingTask.map((task) => {
+                        {processingTask.map((task, index) => {
                             return(
                                 <li key={task} className="task-list__item">
                                     <p>{task}</p>
-                                    <button>完了</button>
+                                    <button onClick={() => onClickDone(index)}>完了</button>
                                     <button>削除</button>
                                 </li>
                             );
@@ -75,16 +81,15 @@ export const App = () => {
                 <div className="status-area__done">
                     <p className="title">完了したタスク</p>
                     <ul className="task-list">
-                        <li className="task-list__item">
-                            <p>タスク5</p>
-                            <button>戻す</button>
-                            <button>削除</button>
-                        </li>
-                        <li className="task-list__item">
-                            <p>タスク6</p>
-                            <button>戻す</button>
-                            <button>削除</button>
-                        </li>
+                        {doneTask.map((task) => {
+                            return(
+                                <li className="task-list__item">
+                                    <p>{task}</p>
+                                    <button>戻す</button>
+                                    <button>削除</button>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </div>
