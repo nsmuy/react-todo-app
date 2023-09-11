@@ -85,7 +85,7 @@ export const App = () => {
 
     return (
         <>
-            <div id="input-area" className="input-area">
+            <div className="input-area">
                 <input
                     value={task}
                     onChange={onChangeTask}
@@ -95,7 +95,7 @@ export const App = () => {
                 <button className="add-button" onClick={onClickAdd}>追加</button>
             </div>
 
-            <div id="status-area" className="status-area">
+            <div className="status-area">
 
                 {/* 未着手のタスク */}
                 <div className="status-area__untouched">
