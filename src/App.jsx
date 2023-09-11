@@ -5,6 +5,7 @@ export const App = () => {
 
     const [task, setTask] = useState('');
     const [untouchedTask, setUntouchedTask] = useState([]);
+    const [processingTask, setProcessingTask] = useState([]);
 
     const onChangeTask = (event) => {setTask(event.target.value);}
 
@@ -13,8 +14,13 @@ export const App = () => {
         if (task === '') return;
         const newTask = [...untouchedTask, task];
         setUntouchedTask(newTask);
-        console.log(newTask);
         setTask('');
+    }
+
+    const onClickProcessing = (index) => {
+        const newProcessingTask = [...processingTask, untouchedTask[index]];
+        setProcessingTask(newProcessingTask);
+        console.log(processingTask);
     }
 
     return (
@@ -35,11 +41,11 @@ export const App = () => {
                 <div className="status-area__untouched">
                     <p className="title">未着手のタスク</p>
                     <ul className="task-list">
-                        {untouchedTask.map((task) => {
+                        {untouchedTask.map((task, index) => {
                             return(
                                 <li key={task} className="task-list__item">
                                     <p>{task}</p>
-                                    <button>着手</button>
+                                    <button onClick={() => onClickProcessing(index)}>着手</button>
                                     <button>削除</button>
                                 </li>
                             );
@@ -52,16 +58,15 @@ export const App = () => {
                 <div className="status-area__processing">
                     <p className="title">進行中のタスク</p>
                     <ul className="task-list">
-                        <li className="task-list__item">
-                            <p>タスク3</p>
-                            <button>完了</button>
-                            <button>削除</button>
-                        </li>
-                        <li className="task-list__item">
-                            <p>タスク4</p>
-                            <button>完了</button>
-                            <button>削除</button>
-                        </li>
+                        {processingTask.map((task) => {
+                            return(
+                                <li key={task} className="task-list__item">
+                                    <p>{task}</p>
+                                    <button>完了</button>
+                                    <button>削除</button>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
 
