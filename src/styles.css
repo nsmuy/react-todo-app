@@ -1,0 +1,58 @@
+button {
+    border-radius: 4px;
+    border: none;
+    padding: 4px 16px;
+}
+
+button:hover {
+    color: #fff;
+    background-color: #333;
+    cursor: pointer;
+}
+
+ul {margin: 0;padding: 0;}
+p {margin: 0;}
+
+.input-area {
+    padding: 16px 24px;
+}
+
+.input-area input {
+    padding: 4px;
+    margin-right: 8px;
+}
+
+.status-area {
+    display: flex;
+}
+
+.title {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.task-list__item {
+    display:flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1em;
+}
+
+.status-area__untouched {
+    width: calc(100% / 3);
+    padding: 8px 16px;
+    background-color: rgba(255,0,0,0.3);
+}
+
+.status-area__processing {
+    width: calc(100% / 3);
+    padding: 8px 16px;
+    background-color:rgba(255,201,0,0.4);
+}
+
+.status-area__done {
+    width: calc(100% / 3);
+    padding: 8px 16px;
+    background-color:rgba(0,255,99,0.3);
+}
