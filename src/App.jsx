@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import {InputTask} from './InputTask'; 
+import {UntouchedTask} from './UntouchedTask'; 
+import {ProcessingTask} from './ProcessingTask'; 
+import {DoneTask} from './DoneTask'; 
 import './styles.css';
 
 export const App = () => {
@@ -85,67 +89,36 @@ export const App = () => {
 
     return (
         <>
-            <div className="input-area">
-                <input
-                    value={task}
-                    onChange={onChangeTask}
-                    placeholder="タスクを入力してください。"
-                    type="text"
-                />
-                <button className="add-button" onClick={onClickAdd}>追加</button>
-            </div>
+
+            <InputTask
+                task={task}
+                onChange={onChangeTask}
+                onClick={onClickAdd}
+            />
 
             <div className="status-area">
 
                 {/* 未着手のタスク */}
-                <div className="status-area__untouched">
-                    <p className="title">未着手のタスク</p>
-                    <ul className="task-list">
-                        {untouchedTask.map((task, index) => {
-                            return(
-                                <li key={task} className="task-list__item">
-                                    <p>{task}</p>
-                                    <button onClick={() => onClickProcessing(index)}>着手</button>
-                                    <button onClick={() => onClickDelete(index, 'untouched')}>削除</button>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
-
+                <UntouchedTask
+                    untouchedTask={untouchedTask}
+                    onClickProcessing={onClickProcessing}
+                    onClickDelete={onClickDelete}
+                />
 
                 {/* 進行中のタスク */}
-                <div className="status-area__processing">
-                    <p className="title">進行中のタスク</p>
-                    <ul className="task-list">
-                        {processingTask.map((task, index) => {
-                            return(
-                                <li key={task} className="task-list__item">
-                                    <p>{task}</p>
-                                    <button onClick={() => onClickDone(index)}>完了</button>
-                                    <button onClick={() => onClickDelete(index, 'processing')}>削除</button>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
+                <ProcessingTask 
+                    processingTask={processingTask}
+                    onClickDone={onClickDone}
+                    onClickDelete={onClickDelete}
+                />
 
 
                 {/* 完了したタスク */}
-                <div className="status-area__done">
-                    <p className="title">完了したタスク</p>
-                    <ul className="task-list">
-                        {doneTask.map((task, index) => {
-                            return(
-                                <li key={task} className="task-list__item">
-                                    <p>{task}</p>
-                                    <button onClick={() => onClickBack(index)}>戻す</button>
-                                    <button onClick={() => onClickDelete(index, 'done')}>削除</button>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
+                <DoneTask
+                    doneTask={doneTask}
+                    onClickBack={onClickBack}
+                    onClickDelete={onClickDelete}
+                />
             </div>
         </>
     );
