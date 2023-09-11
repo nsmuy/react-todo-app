@@ -20,12 +20,13 @@ export const App = () => {
 
     const onClickProcessing = (index) => {
         const newProcessingTask = [...processingTask, untouchedTask[index]];
+        untouchedTask.splice(index, 1);
         setProcessingTask(newProcessingTask);
-        console.log(processingTask);
     }
 
     const onClickDone = (index) => {
         const newDoneTask = [...doneTask, processingTask[index]];
+        processingTask.splice(index, 1);
         setDoneTask(newDoneTask);
     }
 
