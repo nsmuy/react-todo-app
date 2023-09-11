@@ -20,23 +20,50 @@ export const App = () => {
 
     //タスクを進行中にする関数
     const onClickProcessing = (index) => {
+        const newUntouchedTask = [...untouchedTask];
+        newUntouchedTask.splice(index, 1);
+
         const newProcessingTask = [...processingTask, untouchedTask[index]];
-        untouchedTask.splice(index, 1);
-        setProcessingTask(newProcessingTask);
+        setProcessingTask(newProcessingTask)
+        setUntouchedTask(newUntouchedTask);
+        
+        //untouchedTaskを直接配列操作しても結果が変わらないのはなぜ？
+        // const newProcessingTask = [...processingTask, untouchedTask[index]];
+        // untouchedTask.splice(index, 1);
+        // setProcessingTask(newProcessingTask);
     }
 
     //タスクを完了する関数
     const onClickDone = (index) => {
+
+        const newProcessingTask = [...processingTask];
+        newProcessingTask.splice(index, 1);
+
         const newDoneTask = [...doneTask, processingTask[index]];
-        processingTask.splice(index, 1);
+
         setDoneTask(newDoneTask);
+        setProcessingTask(newProcessingTask);
+
+        //processingTaskを直接配列操作しても結果が変わらないのはなぜ？
+        // const newDoneTask = [...doneTask, processingTask[index]];
+        // processingTask.splice(index, 1);
+        // setDoneTask(newDoneTask);
     }
 
     //タスクを進行中に戻す関数
     const onClickBack = (index) => {
-        const newProcessingTask = [...processingTask, doneTask[index]]
-        doneTask.splice(index, 1);
+        const newDoneTask = [...doneTask];
+        newDoneTask.splice(index,1);
+
+        const newProcessingTask = [...processingTask, doneTask[index]];
+
         setProcessingTask(newProcessingTask);
+        setDoneTask(newDoneTask);
+        
+        //doneTaskを直接配列操作しても結果が変わらないのはなぜ？
+        // const newProcessingTask = [...processingTask, doneTask[index]]
+        // doneTask.splice(index, 1);
+        // setProcessingTask(newProcessingTask);
     }
 
     return (
